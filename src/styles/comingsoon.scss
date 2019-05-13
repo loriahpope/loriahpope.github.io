@@ -1,0 +1,19 @@
+@import "variables";
+
+// hero
+
+.hero {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 8.33%);
+  grid-template-rows: 80px auto 80px;
+  align-items: center;
+
+  .heading-1.coming-soon {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 2;
+  }
+}
