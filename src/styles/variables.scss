@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,500,800');
+
+// colors
+$primary-color: #FFD262;
+$secondary-color-1: #9C67EA;
+$secondary-color-2: #61B3E8;
+$complement-color: #6C80EB;
+$primary-text-color: #121212;
+$secondary-text-color: #595959;
+$link-text-color: #2129D3;
+
+// fonts
+$base-font-size: 16px;
+$base-font-family: 'Heebo', sans-serif;
+
+$h1-font-family: 'Heebo Medium', sans-serif;
+$h1-font-size: 2.837em;
+$h1-font-color: $primary-text-color;
+
+$h2-font-family: 'Heebo Medium', sans-serif;
+$h2-light-font-family: 'Heebo Light', sans-serif;
+$h2-font-size: 1.999em;
+$h2-font-color: $primary-text-color;
+
+$h3-font-family: 'Heebo Medium', sans-serif;
+$h3-light-font-family: 'Heebo Light', sans-serif;
+$h3-font-size: 1.414em;
+$h3-font-color: $primary-text-color;
+
+$body-font-family: $base-font-family;
+$body-font-size: $base-font-size;
+$body-font-color: $primary-text-color;
+
+$link-font-family: $base-font-family;
+$link-font-size: $base-font-size;
+$link-font-color: $link-text-color;
+
+$strong-font-family: 'Heebo Extrabold', sans-serif;
+$strong-font-size: $base-font-size;
+$strong-font-color: $primary-text-color;
+
+$subtle-font-family: $base-font-family;
+$subtle-font-size: .707em;
+$subtle-font-color: $secondary-text-color;
+
+// mixins
+@mixin heading-1 {
+  font-family: $h1-font-family;
+  font-size: $h1-font-size;
+  color: $h1-font-color;
+  margin: 0;
+}
+
+@mixin heading-2 {
+  font-family: $h2-font-family;
+  font-size: $h2-font-size;
+  color: $h2-font-color;
+  margin: 0;
+}
+
+@mixin heading-2-light {
+  font-family: $h2-light-font-family;
+  font-size: $h2-font-size;
+  color: $h2-font-color;
+  margin: 0;
+}
+
+@mixin heading-3 {
+  font-family: $h3-font-family;
+  font-size: $h3-font-size;
+  color: $h3-font-color;
+  margin: 0;
+}
+
+@mixin heading-3-light {
+  font-family: $h3-light-font-family;
+  font-size: $h3-font-size;
+  color: $h3-font-color;
+  margin: 0;
+}
+
+@mixin body-copy {
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+  color: $primary-text-color;
+}
+
+@mixin body-copy-bold {
+  font-size: $strong-font-size;
+  font-family: $strong-font-family;
+  color: $primary-text-color;
+}
+
+@mixin body-copy-link {
+  font-size: $link-font-size;
+  font-family: $link-font-family;
+  color: $link-text-color;
+  text-decoration: none;
+  &:hover {
+    opacity: .8;
+  }
+}
+
+@mixin body-copy-subtle {
+  font-size: $subtle-font-size;
+  font-family: $subtle-font-family;
+  color: $secondary-text-color;
+}
+
+
+// other mixins
+@mixin project-placeholder {
+  background-color: rgba(112, 112, 112, .2);
+  //border: 1px solid rgba(112, 112, 112, .2);;
+  //border-radius: 10px;
+  box-shadow: 1px 2px 6px rgba(112, 112, 112, .2);
+  height: 100%;
+}
+
+// base classes
+
+html {
+  height: 100%;
+}
+
+body {
+  @include body-copy;
+  margin: 0;
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+a {
+  @include body-copy-link;
+}
+
+.heading-1 {
+  @include heading-1;
+}
+
+.heading-2 {
+  @include heading-2;
+}
+
+.heading-2-light {
+  @include heading-2-light;
+}
+
+.heading-3 {
+  @include heading-3;
+}
+
+.heading-3-light {
+  @include heading-3-light;
+}
+
+.subtle {
+  @include body-copy-subtle;
+}
+
+.strong {
+  @include body-copy-bold;
+}
+
+// navigation
+
+.navigation {
+  width: 80%;
+  margin: 0 auto;
+
+  a {
+    @include heading-3;
+    font-size: $base-font-size;
+    &:hover {
+      opacity: 1;
+      border-bottom: 4px $primary-color solid;
+    }
+  }
+
+  .home-logo {
+    width: 24px;
+  }
+
+  display: grid;
+  grid-template-columns: repeat(12, auto);
+  grid-template-rows: 32px 36px;
+
+  .nav-item {
+    &-1{
+      grid-column-start: 1;
+      grid-column-end: 1;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      justify-self: center;
+    }
+
+    &-2{
+      grid-column-start: 2;
+      grid-column-end: 2;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      justify-self: center;
+    }
+
+    &-3{
+      grid-column-start: 3;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      justify-self: center;
+    }
+
+    &-4{
+      grid-column-start: 12;
+      grid-column-end: 12;
+      grid-row-start: 2;
+      grid-row-end: 2;
+      justify-self: center;
+      background-image: url("../images/logo-primary.png");
+      background-size: 24px 24px;
+      background-repeat: no-repeat;
+      &:hover {
+        border-bottom: none;
+        background-image: url("../images/logo-secondary1.png");
+      }
+    }
+
+  }
+
+
+}
+
+// hero
+
+.hero {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 8.33%);
+  grid-template-rows: 80px auto 80px;
+  align-items: center;
+
+  .heading-1 {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 2;
+    grid-row-end: 2;
+
+    &:after {
+      content: "using research to drive product and team strategy";
+      color: $complement-color;
+      animation: rotate-text 10s infinite;
+    }
+  }
+}
+
+// hero animation
+
+@keyframes rotate-text {
+  8.33% {
+    opacity: 1;
+    content: "using research to drive product and team strategy";
+  }
+  16.67% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0;
+  }
+  33.33% {
+    content: "passionate about solving complex problems collaboratively";
+    opacity: 1;
+  }
+  41.67% {
+    opacity: 1;
+    content: "passionate about solving complex problems collaboratively";
+  }
+  50% {
+    opacity: 0;
+  }
+  58.33% {
+    opacity: 0;
+  }
+  66.67% {
+    content: "enthusiastically uniting design and development";
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+    content: "enthusiastically uniting design and development";
+  }
+  83.33% {
+    opacity: 0;
+  }
+  91.67% {
+    opacity: 0;
+  }
+  100% {
+    content: "using research to drive product and team strategy";
+    opacity: 1;
+  }
+}
+
+
+// projects
+
+.projects {
+  width: 80%;
+  margin:0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-column-gap: 100px;
+  grid-template-rows: 48px 48px 48px repeat(25, 40px);
+
+  .title {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-self: center;
+  }
+
+  .project-title {
+    margin-top: 16px;
+    margin-bottom: 4px;
+  }
+
+  .project-body {
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+
+  .featured-project-1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 8;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .featured-project-2 {
+    grid-column-start: 4;
+    grid-column-end: 7;
+    grid-row-start: 3;
+    grid-row-end: 8;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .project-3 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 12;
+    grid-row-end: 15;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .project-4 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 12;
+    grid-row-end: 15;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .project-5 {
+    grid-column-start: 5;
+    grid-column-end: 7;
+    grid-row-start: 12;
+    grid-row-end: 15;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .title-2 {
+    grid-column-start: 1;
+    grid-column-end: 7;
+    grid-row-start: 19;
+    grid-row-end: 19;
+    justify-self: center;
+  }
+
+  .side-project-1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 21;
+    grid-row-end: 25;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+  .side-project-2 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 21;
+    grid-row-end: 25;
+    .placeholder {
+      @include project-placeholder;
+    }
+  }
+
+}
+
+.speaking-writing {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, auto);
+  grid-template-rows: 48px 48px repeat(18, 40px);
+
+  .title {
+    grid-column-start: 1;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    justify-self: center;
+  }
+
+  .speaking-writing-item {
+    &-1 {
+      grid-column-start: 1;
+      grid-row-start: 3;
+      grid-row-end: 5;
+    }
+    &-2 {
+      grid-column-start: 1;
+      grid-row-start: 6;
+      grid-row-end: 8;
+    }
+    &-3 {
+      grid-column-start: 1;
+      grid-row-start: 9;
+      grid-row-end: 11;
+    }
+    &-4 {
+      grid-column-start: 1;
+      grid-row-start: 12;
+      grid-row-end: 14;
+    }
+    &-5 {
+      grid-column-start: 1;
+      grid-row-start: 15;
+      grid-row-end: 17;
+    }
+    &-6 {
+      grid-column-start: 1;
+      grid-row-start: 18;
+      grid-row-end: 20;
+    }
+
+  }
+
+  .project-body {
+    margin-top: 0;
+    margin-bottom: 4px;
+  }
+
+}
+
+.footer {
+  background-size: cover;
+
+  a {
+    @include body-copy;
+    font-size: $base-font-size;
+    &:hover {
+      opacity: 1;
+      border-bottom: 4px $primary-color solid;
+    }
+  }
+
+  .footer-content {
+    width: 50%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: 24px 16px 16px 16px 24px;
+    justify-items: center;
+    align-items: center;
+
+    .footer-item {
+      &-1 {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &-2 {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &-3 {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &-4 {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &-5 {
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+
+      &-6 {
+        grid-row-start: 4;
+        grid-row-end: 4;
+        grid-column-start: 3;
+      }
+    }
+
+  }
+}

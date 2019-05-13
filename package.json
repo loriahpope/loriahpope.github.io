@@ -1,0 +1,32 @@
+{
+  "name": "051219-portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --output-style compressed -o dist/css src/styles",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "imagemin": "imagemin src/images/*.png dist/images -p",
+    "serve": "browser-sync start --server --files 'dist/css/*.css' 'src/images/*.png'",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:images": "npm run imagemin",
+    "build:all": "npm run build:css && npm run build:images",
+    "watch:css": "onchange 'src/styles/*.scss' -- npm run build:all",
+    "watch:all": "parallelshell 'npm run serve' 'npm run watch:css'"
+  },
+  "author": "Loriah Pope",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "browser-sync": "^2.26.5",
+    "imagemin-cli": "^4.0.1",
+    "node-sass": "^4.12.0",
+    "onchange": "^5.2.0",
+    "parallelshell": "^3.0.2",
+    "postcss-cli": "^6.1.2"
+  }
+}
