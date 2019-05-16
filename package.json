@@ -18,14 +18,14 @@
   "license": "ISC",
   "keywords": [],
   "description": "",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^9.5.1",
     "browser-sync": "^2.26.5",
     "imagemin-cli": "^4.0.1",
     "node-sass": "^4.12.0",
     "onchange": "^5.2.0",
+    "pa11y": "^5.1.0",
     "parallelshell": "^3.0.2",
     "postcss-cli": "^6.1.2"
   }

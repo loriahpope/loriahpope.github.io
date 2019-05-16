@@ -109,12 +109,9 @@ $subtle-font-color: $secondary-text-color;
 
 
 // other mixins
-@mixin project-placeholder {
-  background-color: rgba(112, 112, 112, .2);
-  //border: 1px solid rgba(112, 112, 112, .2);;
-  //border-radius: 10px;
-  box-shadow: 1px 2px 6px rgba(112, 112, 112, .2);
-  height: 100%;
+@mixin nav-item-hover-active {
+  opacity: 1;
+  border-bottom: 4px $primary-color solid;
 }
 
 // base classes
@@ -172,10 +169,13 @@ a {
   a {
     @include heading-3;
     font-size: $base-font-size;
-    &:hover {
-      opacity: 1;
-      border-bottom: 4px $primary-color solid;
+    &:hover  {
+      @include nav-item-hover-active;
     }
+  }
+
+  .active-nav-item {
+    @include nav-item-hover-active;
   }
 
   .home-logo {
@@ -193,6 +193,13 @@ a {
       grid-row-start: 2;
       grid-row-end: 2;
       justify-self: center;
+      background-image: url("../images/logo-primary.png");
+      background-size: 24px 24px;
+      background-repeat: no-repeat;
+      &:hover {
+        border-bottom: none;
+        background-image: url("../images/logo-secondary1.png");
+      }
     }
 
     &-2{
@@ -212,18 +219,11 @@ a {
     }
 
     &-4{
-      grid-column-start: 12;
-      grid-column-end: 12;
+      grid-column-start: 4;
+      grid-column-end: 4;
       grid-row-start: 2;
       grid-row-end: 2;
       justify-self: center;
-      background-image: url("../images/logo-primary.png");
-      background-size: 24px 24px;
-      background-repeat: no-repeat;
-      &:hover {
-        border-bottom: none;
-        background-image: url("../images/logo-secondary1.png");
-      }
     }
 
   }
@@ -238,8 +238,7 @@ a {
     @include body-copy;
     font-size: $base-font-size;
     &:hover {
-      opacity: 1;
-      border-bottom: 4px $primary-color solid;
+      @include nav-item-hover-active;
     }
   }
 
