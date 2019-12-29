@@ -6,11 +6,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "node-sass --output-style compressed -o dist/css src/styles",
     "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
-    "imagemin": "imagemin src/images/*.png dist/images -p",
+    "imagemin": "imagemin src/images/ --out-dir=dist/images -p",
     "serve": "browser-sync start --server --files 'dist/css/*.css' 'src/images/*.png'",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:images": "npm run imagemin",
-    "build:all": "npm run build:css && npm run build:images",
+    "build:all": "npm run build:css build:images",
     "watch:css": "onchange 'src/styles/*.scss' -- npm run build:all",
     "watch:all": "parallelshell 'npm run serve' 'npm run watch:css'"
   },

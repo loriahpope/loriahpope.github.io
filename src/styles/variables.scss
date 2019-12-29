@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Heebo:400,500,800');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,500,800');
 
 // colors
 $primary-color: #FFD262;
@@ -11,19 +11,19 @@ $link-text-color: #2129D3;
 
 // fonts
 $base-font-size: 16px;
-$base-font-family: 'Heebo', sans-serif;
+$base-font-family: 'Lora', sans-serif;
+$base-line-height: 1.7em;
 
-$h1-font-family: 'Heebo Medium', sans-serif;
+$h1-font-family: 'Lora', sans-serif;
 $h1-font-size: 2.837em;
 $h1-font-color: $primary-text-color;
 
-$h2-font-family: 'Heebo Medium', sans-serif;
-$h2-light-font-family: 'Heebo Light', sans-serif;
+$h2-font-family: 'Lora', sans-serif;
+$h2-light-font-family: 'Lora', sans-serif;
 $h2-font-size: 1.999em;
 $h2-font-color: $primary-text-color;
 
-$h3-font-family: 'Heebo Medium', sans-serif;
-$h3-light-font-family: 'Heebo Light', sans-serif;
+$h3-font-family: 'Lora', sans-serif;
 $h3-font-size: 1.414em;
 $h3-font-color: $primary-text-color;
 
@@ -35,7 +35,7 @@ $link-font-family: $base-font-family;
 $link-font-size: $base-font-size;
 $link-font-color: $link-text-color;
 
-$strong-font-family: 'Heebo Extrabold', sans-serif;
+$strong-font-family: 'Lora', sans-serif;
 $strong-font-size: $base-font-size;
 $strong-font-color: $primary-text-color;
 
@@ -43,7 +43,27 @@ $subtle-font-family: $base-font-family;
 $subtle-font-size: .707em;
 $subtle-font-color: $secondary-text-color;
 
-// mixins
+// spacing
+$spacing-1x: $base-font-size;
+$spacing-2x: 2 * $spacing-1x;
+$spacing-3x: 3 * $spacing-1x;
+$spacing-4x: 4 * $spacing-1x;
+
+$spacing-05x: $spacing-1x / 2;
+
+
+// text mixins
+@mixin text-highlight($highlight-color: lighten($primary-color, 20%)) {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: lighten($highlight-color, 20%);
+  left: 0;
+  bottom: 0;
+  height: .6em;
+  z-index: -1;
+}
+
 @mixin heading-1 {
   font-family: $h1-font-family;
   font-size: $h1-font-size;
@@ -72,17 +92,11 @@ $subtle-font-color: $secondary-text-color;
   margin: 0;
 }
 
-@mixin heading-3-light {
-  font-family: $h3-light-font-family;
-  font-size: $h3-font-size;
-  color: $h3-font-color;
-  margin: 0;
-}
-
 @mixin body-copy {
   font-size: $base-font-size;
   font-family: $base-font-family;
   color: $primary-text-color;
+  line-height: $base-line-height
 }
 
 @mixin body-copy-bold {
@@ -94,10 +108,16 @@ $subtle-font-color: $secondary-text-color;
 @mixin body-copy-link {
   font-size: $link-font-size;
   font-family: $link-font-family;
-  color: $link-text-color;
+  color: $primary-text-color;
   text-decoration: none;
+  position: relative;
+  &:after {
+    @include text-highlight($primary-color);
+  }
   &:hover {
-    opacity: .8;
+    &:after {
+      @include text-highlight($secondary-color-1);
+    }
   }
 }
 
@@ -107,12 +127,47 @@ $subtle-font-color: $secondary-text-color;
   color: $secondary-text-color;
 }
 
+// spacing mixins
+@mixin padding($all: null, $top: null, $right: null, $bottom: null, $left: null) {
+  padding: $all;
+  padding-top: $top;
+  padding-right: $right;
+  padding-bottom: $bottom;
+  padding-left: $left;
+}
+
+@mixin margin($all: null, $top: null, $right: null, $bottom: null, $left: null) {
+  margin: $all;
+  margin-top: $top;
+  margin-right: $right;
+  margin-bottom: $bottom;
+  margin-left: $left;
+}
+
+// base page layout mixins
+@mixin title {
+  width: 80%;
+  margin:0 auto;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 48px auto 48px;
+
+  .heading-2 {
+    grid-row-start: 2;
+    grid-row-end: 2;
+  }
+}
+
+@mixin footer-layout {
+  .footer-content {
+    grid-template-rows: 48px 24px 16px 16px 16px 24px;
+  }
+}
+
 
 // other mixins
-@mixin nav-item-hover-active {
-  opacity: 1;
-  border-bottom: 4px $primary-color solid;
-}
+
+
 
 // base classes
 
@@ -122,14 +177,26 @@ html {
 
 body {
   @include body-copy;
+  @include padding($left: 100px, $right: 100px);
   margin: 0;
   min-height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 10% auto 10%;
+  grid-gap: 1em;
 }
 
 a {
   @include body-copy-link;
+}
+
+p {
+  @include body-copy;
+  @include margin($top: $spacing-1x, $bottom: $spacing-1x);
+}
+
+button {
+  @include body-copy;
 }
 
 .heading-1 {
@@ -148,142 +215,32 @@ a {
   @include heading-3;
 }
 
-.heading-3-light {
-  @include heading-3-light;
-}
-
 .subtle {
   @include body-copy-subtle;
 }
 
-.strong {
+strong, .strong {
   @include body-copy-bold;
 }
 
-// navigation
 
-.navigation {
-  width: 80%;
-  margin: 0 auto;
+// base page layout
 
-  a {
-    @include heading-3;
-    font-size: $base-font-size;
-    &:hover  {
-      @include nav-item-hover-active;
-    }
-  }
-
-  .active-nav-item {
-    @include nav-item-hover-active;
-  }
-
-  .home-logo {
-    width: 24px;
-  }
-
-  display: grid;
-  grid-template-columns: repeat(12, auto);
-  grid-template-rows: 32px 36px;
-
-  .nav-item {
-    &-1{
-      grid-column-start: 1;
-      grid-column-end: 1;
-      grid-row-start: 2;
-      grid-row-end: 2;
-      justify-self: center;
-      background-image: url("../images/logo-primary.png");
-      background-size: 24px 24px;
-      background-repeat: no-repeat;
-      &:hover {
-        border-bottom: none;
-        background-image: url("../images/logo-secondary1.png");
-      }
-    }
-
-    &-2{
-      grid-column-start: 2;
-      grid-column-end: 2;
-      grid-row-start: 2;
-      grid-row-end: 2;
-      justify-self: center;
-    }
-
-    &-3{
-      grid-column-start: 3;
-      grid-column-end: 3;
-      grid-row-start: 2;
-      grid-row-end: 2;
-      justify-self: center;
-    }
-
-    &-4{
-      grid-column-start: 4;
-      grid-column-end: 4;
-      grid-row-start: 2;
-      grid-row-end: 2;
-      justify-self: center;
-    }
-
-  }
-
-
+.content-page {
+  @include footer-layout;
 }
 
-.footer {
-  background-size: cover;
+@supports (display: grid) {
+  .module {
+    margin: 0;
+  }
+}
 
-  a {
-    @include body-copy;
-    font-size: $base-font-size;
-    &:hover {
-      @include nav-item-hover-active;
-    }
+@media (max-width: 700px) {
+
+  body {
+    @include padding($left: 20px, $right: 20px, $bottom: 20px);
+    grid-template-rows: auto;
   }
 
-  .footer-content {
-    width: 50%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(5, auto);
-    grid-template-rows: 24px 16px 16px 16px 24px;
-    justify-items: center;
-    align-items: center;
-
-    .footer-item {
-      &-1 {
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      &-2 {
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      &-3 {
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      &-4 {
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      &-5 {
-        grid-row-start: 2;
-        grid-row-end: 3;
-      }
-
-      &-6 {
-        grid-row-start: 4;
-        grid-row-end: 4;
-        grid-column-start: 1;
-        grid-column-end: 6;
-      }
-    }
-
-  }
 }
