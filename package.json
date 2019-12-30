@@ -5,9 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "node-sass --output-style compressed -o dist/css src/styles",
-    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
     "imagemin": "imagemin src/images/ --out-dir=dist/images -p",
     "serve": "browser-sync start --server --files 'dist/css/*.css' 'src/images/*.png'",
+    "autoprefixer": "npx postcss dist/css/*.css --use autoprefixer -d dist/css/",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:images": "npm run imagemin",
     "build:all": "npm run build:css build:images",
@@ -20,13 +20,13 @@
   "description": "",
   "dependencies": {},
   "devDependencies": {
-    "autoprefixer": "^9.5.1",
+    "autoprefixer": "^9.7.3",
     "browser-sync": "^2.26.5",
     "imagemin-cli": "^4.0.1",
     "node-sass": "^4.12.0",
     "onchange": "^5.2.0",
     "pa11y": "^5.1.0",
     "parallelshell": "^3.0.2",
-    "postcss-cli": "^6.1.2"
+    "postcss-cli": "^6.1.3"
   }
 }
