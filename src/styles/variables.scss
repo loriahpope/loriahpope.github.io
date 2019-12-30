@@ -239,7 +239,7 @@ strong, .strong {
 @media (max-width: 700px) {
 
   body {
-    @include padding($left: 20px, $right: 20px, $bottom: 20px);
+    @include padding($all: 20px);
     grid-template-rows: auto;
   }
 
